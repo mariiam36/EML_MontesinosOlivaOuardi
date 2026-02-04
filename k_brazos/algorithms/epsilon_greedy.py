@@ -40,7 +40,14 @@ class EpsilonGreedy(Algorithm):
 
         # Observa que para para epsilon=0 solo selecciona un brazo y no hace un primer recorrido por todos ellos.
         # ¿Podrías modificar el código para que funcione correctamente para epsilon=0?
+        # Caso especial: epsilon = 0
+        if self.epsilon == 0:
+            for arm in range(self.k):
+                if self.counts[arm] == 0:
+                    return arm
+            return np.argmax(self.values)
 
+        # Caso general: epsilon-greedy
         if np.random.random() < self.epsilon:
             # Selecciona un brazo al azar
             chosen_arm = np.random.choice(self.k)
