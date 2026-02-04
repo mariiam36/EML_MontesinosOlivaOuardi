@@ -42,10 +42,9 @@ class EpsilonGreedy(Algorithm):
         # ¿Podrías modificar el código para que funcione correctamente para epsilon=0?
         # Caso especial: epsilon = 0
         if self.epsilon == 0:
-            for arm in range(self.k):
-                if self.counts[arm] == 0:
-                    return arm
-            return np.argmax(self.values)
+            arm = np.random.choice(self.k)
+            if self.counts[arm] == 0:
+                return arm
 
         # Caso general: epsilon-greedy
         if np.random.random() < self.epsilon:
