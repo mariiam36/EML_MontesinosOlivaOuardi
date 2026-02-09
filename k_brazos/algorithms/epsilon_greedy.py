@@ -43,8 +43,14 @@ class EpsilonGreedy(Algorithm):
         # Caso especial: epsilon = 0
         # print("Hola")
         if self.epsilon == 0:
-            # Si epsilon es 0, siempre selecciona el brazo con la recompensa promedio estimada más alta
-            chosen_arm = np.argmax(self.values)
+            # Si epsilon es 0, siempre selecciona el brazo con la recompensa promedio estimada más alta entre los que no ha recorrido aún
+            if np.any(self.counts == 0):
+                # Si hay brazos que no han sido seleccionados, elige uno de ellos al azar
+                untried_arms = np.where(self.counts == 0)[0]
+                chosen_arm = np.random.choice(untried_arms)
+            else:
+                # Si todos los brazos han sido seleccionados al menos una vez, elige el que tiene la recompensa promedio estimada más alta
+                chosen_arm = np.argmax(self.values)
         
         # Caso general: epsilon-greedy
         elif np.random.random() < self.epsilon:
