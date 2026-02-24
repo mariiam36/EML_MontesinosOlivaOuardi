@@ -36,7 +36,7 @@ class MCOnPolicy(BaseAlgorithm):
 
             episode = []
             total_reward = 0.0
-            factor = 1        # Acumula la potencia del descuento
+            #factor = 1        # Acumula la potencia del descuento
             # Generar episodio
             while not done:
                 action = epsilon_greedy_action(self.Q, state, epsilon)
@@ -44,8 +44,8 @@ class MCOnPolicy(BaseAlgorithm):
                 done = terminated or truncated
 
                 episode.append((state, action, reward))
-                total_reward += factor * reward
-                factor *= self.discount_factor
+                total_reward += reward
+                #factor *= self.discount_factor
                 state = next_state
 
             # Actualización backward
