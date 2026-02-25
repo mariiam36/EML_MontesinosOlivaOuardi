@@ -11,17 +11,17 @@ class MCOffPolicy(BaseAlgorithm):
     Behavior policy: epsilon-soft
     """
 
-    def __init__(self, env, discount_factor=0.95, epsilon=0.3, max_steps=50):
+    def __init__(self, env, discount_factor=0.95, epsilon=0.3):
         super().__init__(env)
         self.discount_factor = discount_factor
         self.epsilon = epsilon
-        self.max_steps = max_steps
 
         self.C = np.zeros((self.nS, self.nA))  # acumulador pesos
 
     def train(self, num_episodes=5000):
 
         episode_rewards = []
+        episode_lengths = []
 
         prob_greedy = 1.0 - self.epsilon + (self.epsilon / self.nA)
         inv_prob = 1.0 / prob_greedy
@@ -38,7 +38,7 @@ class MCOffPolicy(BaseAlgorithm):
             total_reward = 0
 
             # Generar episodio (behavior policy)
-            while not done and step < self.max_steps:
+            while not done:
 
                 probs = epsilon_soft_distribution(
                     self.Q, state, self.epsilon
@@ -79,8 +79,9 @@ class MCOffPolicy(BaseAlgorithm):
                 W *= inv_prob
 
             episode_rewards.append(total_reward)
+            episode_lengths.append(step)
 
-        return episode_rewards
+        return episode_rewards, episode_lengths
     
 
     def greedy_policy_analysis(self):

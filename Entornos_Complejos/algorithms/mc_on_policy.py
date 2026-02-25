@@ -23,20 +23,21 @@ class MCOnPolicy(BaseAlgorithm):
 
         rewards_per_episode = []
         episode_lengths = []
-
+        
+        epsilon_start = self.epsilon
+        
+        decay_steps = num_episodes * 0.8 
+        decay_rate = (epsilon_start - 0.05) / decay_steps
+        
         for t in tqdm(range(num_episodes), desc="Entrenando MC on-policy"):
 
             state, _ = self.env.reset()
             done = False
 
-            epsilon = (
-                max(0.05, self.epsilon * (0.995 ** t))
-                if self.decay else self.epsilon
-            )
-
+            epsilon = (max(0.05, epsilon_start - (decay_rate * t))) if self.decay else self.epsilon
+            
             episode = []
             total_reward = 0.0
-            #factor = 1        # Acumula la potencia del descuento
             # Generar episodio
             while not done:
                 action = epsilon_greedy_action(self.Q, state, epsilon)
@@ -45,7 +46,6 @@ class MCOnPolicy(BaseAlgorithm):
 
                 episode.append((state, action, reward))
                 total_reward += reward
-                #factor *= self.discount_factor
                 state = next_state
 
             # Actualización backward

@@ -20,16 +20,18 @@ class SARSA(BaseAlgorithm):
 
         rewards = []
         episode_lengths = []
+        
+        epsilon_start = self.epsilon
+        
+        decay_steps = num_episodes * 0.8 
+        decay_rate = (epsilon_start - 0.05) / decay_steps
 
         for t in tqdm(range(num_episodes), desc="Entrenando SARSA"):
             
             state, _ = self.env.reset()
             done = False
 
-            epsilon = (
-                max(0.05, self.epsilon * (0.995 ** t))
-                if self.decay else self.epsilon
-            )
+            epsilon = (max(0.05, epsilon_start - (decay_rate * t))) if self.decay else self.epsilon
 
             action = epsilon_greedy_action(self.Q, state, epsilon)
 
