@@ -10,6 +10,3 @@ def epsilon_soft_distribution(Q, state, epsilon):
 def epsilon_greedy_action(Q, state, epsilon):
     probs = epsilon_soft_distribution(Q, state, epsilon)
     return np.random.choice(len(probs), p=probs)
-
-def greedy_action(Q, state):
-    return np.argmax(Q[state])
