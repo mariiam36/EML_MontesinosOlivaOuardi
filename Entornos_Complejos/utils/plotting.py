@@ -48,7 +48,7 @@ def plot_curve(
     plt.show()
 
 
-def compare_algorithms(results_dict, title="Comparación de algoritmos", window=200):
+def compare_algorithms(results_dict, title="Comparación de algoritmos (recompensas)", y_label="Recompensa por episodio", window=200):
 
     plt.figure(figsize=(8, 5))
 
@@ -66,25 +66,8 @@ def compare_algorithms(results_dict, title="Comparación de algoritmos", window=
 
     plt.title(title)
     plt.xlabel("Episodio")
-    plt.ylabel("Recompensa por episodio")
+    plt.ylabel(y_label)
     plt.legend()
     plt.grid(True)
     plt.show()
 
-# def compare_algorithms(results_dict, title="Comparación de algoritmos"):
-#     """
-#     results_dict: dict
-#         {"SARSA": lista_valores, "Q-Learning": lista_valores, ...}
-#     """
-
-#     plt.figure(figsize=(7, 4))
-
-#     for name, values in results_dict.items():
-#         plt.plot(values, label=name)
-
-#     plt.title(title)
-#     plt.xlabel("Episodio")
-#     plt.ylabel("Recompensa promedio")
-#     plt.legend()
-#     plt.grid(True)
-#     plt.show()
