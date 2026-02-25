@@ -75,8 +75,6 @@ def plot_optimal_selections(steps: int, optimal_selections: np.ndarray, algorith
     :param algorithms: Lista de instancias de algoritmos comparados.
     """
 
-    #raise NotImplementedError("Esta función aún no ha sido implementada.")
-
     sns.set_theme(style="whitegrid", palette="muted", font_scale=1.2)
 
     plt.figure(figsize=(14, 7))

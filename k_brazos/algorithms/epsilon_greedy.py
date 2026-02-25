@@ -38,10 +38,7 @@ class EpsilonGreedy(Algorithm):
         :return: índice del brazo seleccionado.
         """
 
-        # Observa que para para epsilon=0 solo selecciona un brazo y no hace un primer recorrido por todos ellos.
-        # ¿Podrías modificar el código para que funcione correctamente para epsilon=0?
         # Caso especial: epsilon = 0
-        # print("Hola")
         if self.epsilon == 0:
             # Si epsilon es 0, siempre selecciona el brazo con la recompensa promedio estimada más alta entre los que no ha recorrido aún
             if np.any(self.counts == 0):
