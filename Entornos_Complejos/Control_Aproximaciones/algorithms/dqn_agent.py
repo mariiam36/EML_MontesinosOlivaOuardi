@@ -139,3 +139,14 @@ class DQNAgent:
             rewards_history.append(episode_reward)
 
         return rewards_history, steps_history
+    
+    
+    def greedy_action(self, state):
+        state_tensor = torch.FloatTensor(
+            np.array(state, dtype=np.float32)
+        ).unsqueeze(0).to(self.device)
+
+        with torch.no_grad():
+            q_values = self.q_net(state_tensor)
+
+        return torch.argmax(q_values).item()

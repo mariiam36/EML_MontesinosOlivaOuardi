@@ -33,3 +33,28 @@ class BaseApproxControl(ABC):
     @abstractmethod
     def train(self, num_episodes):
         pass
+
+
+    # Cada algoritmo define cómo calcula la acción greedy
+    @abstractmethod
+    def greedy_action(self, state):
+        pass
+
+
+    # Trayectoria greedy común
+    def greedy_trajectory(self):
+
+        state, _ = self.env.reset()
+        done = False
+
+        actions = []
+
+        while not done:
+
+            action = self.greedy_action(state)
+            actions.append(str(action))
+
+            state, _, terminated, truncated, _ = self.env.step(action)
+            done = terminated or truncated
+
+        return ", ".join(actions)

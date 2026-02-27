@@ -1,7 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 from .base import BaseApproxControl
-from policies.epsilon_greedy import epsilon_greedy
+from policies.epsilon_greedy import epsilon_greedy, compute_q
 
 
 class SARSAApprox:
@@ -36,6 +36,7 @@ class SARSAApprox:
         idx = np.ravel_multi_index(state, self.env.observation_space.nvec)
         feature[idx] = 1
         return feature
+
 
     def train(self, num_episodes=5000):
 
@@ -89,3 +90,8 @@ class SARSAApprox:
             steps.append(steps_episode)
 
         return rewards, steps
+    
+
+    def greedy_action(self, state):
+        q_values = compute_q(self, state)
+        return np.argmax(q_values)
