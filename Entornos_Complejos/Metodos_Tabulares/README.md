@@ -1,10 +1,39 @@
-# Un poco de código para estudiar los métodos tabulares
+# Parte 2A: Métodos Tabulares
 
-- **evaluacion_bellman** Ejemplo de cómo las ecuaciones de Bellamn, resueltas de forma iteriativa, se pueden usar para resolver un laberinto.
-- **MonteCarloTodasLasVisitas** Ejemplo de cómo incluso modificando Monte Carlo se consigue ciertos resultados. No es Monte Carlo, pero parecido. Para conseguir  Monte Carlo hay que modificar el código.
-- **EjemploGeneracionVideos** Ejemplo de cómo se puede usar un Wrapper para generar un vídeo de algunos episodios de Gymansium.
+## Descripción
 
----
-📌  Gymnasium: https://gymnasium.farama.org/
+En esta sección se implementan y comparan distintos métodos tabulares de aprendizaje por refuerzo en el entorno discreto *Cliff Walking* de Gymnasium. Se estudian métodos Monte Carlo (on-policy y off-policy) y métodos de Diferencia Temporal (SARSA y Q-Learning).
 
-📌  Reinforcement Learning: An Introduction. Richard S. Sutton and Andrew G. Barto. Second Edition. MIT Press, Cambridge, MA, 2018 http://incompleteideas.net/book/the-book-2nd.html
+
+
+## Estructura
+
+```
+Metodos_Tabulares/
+├── algorithms/
+├── environments/
+├── policies/
+├── utils/
+├── MC_AllVisits_CliffWalking.ipynb
+├── MC_AllVisitsOff_CliffWalking.ipynb
+├── Sarsa_CliffWalking.ipynb
+├── QLearning_CliffWalking.ipynb
+├── main.ipynb
+└── README.md
+```
+
+- `algorithms/`: implementaciones de Monte Carlo, SARSA y Q-Learning.
+- `environments/`: definición y configuración de los entornos utilizados.
+- `policies/`: implementación de políticas ($\epsilon$-greedy).
+- `utils/`: funciones auxiliares para visualización.
+- `MC_AllVisits_CliffWalking.ipynb`: ejecución de Monte Carlo on-policy.
+- `MC_AllVisitsOff_CliffWalking.ipynb`: ejecución de Monte Carlo off-policy.
+- `Sarsa_CliffWalking.ipynb`: ejecución del algoritmo SARSA.
+- `QLearning_CliffWalking.ipynb`: ejecución del algoritmo Q-Learning.
+- `main.ipynb`: comparación conjunta de todos los métodos.
+- `README.md`: este fichero.
+
+
+## Tecnologías
+
+Las mismas que las detalladas en el fichero `README.md` principal.
