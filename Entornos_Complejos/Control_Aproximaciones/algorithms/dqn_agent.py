@@ -79,11 +79,7 @@ class DQNAgent:
 
         # Target Q
         with torch.no_grad():
-            next_actions = torch.argmax(self.q_net(s_next), dim=1)
-            next_q = self.target_net(s_next).gather(
-                1,
-                next_actions.unsqueeze(1)
-            ).squeeze()
+            next_q = self.target_net(s_next).max(dim=1)[0]
 
             target = r + self.gamma * next_q * (1 - d)
 
@@ -150,3 +146,20 @@ class DQNAgent:
             q_values = self.q_net(state_tensor)
 
         return torch.argmax(q_values).item()
+    
+    def greedy_trajectory(self):
+
+        state, _ = self.env.reset()
+        done = False
+
+        actions = []
+
+        while not done:
+
+            action = self.greedy_action(state)
+            actions.append(str(action))
+
+            state, _, terminated, truncated, _ = self.env.step(action)
+            done = terminated or truncated
+
+        return ", ".join(actions)
