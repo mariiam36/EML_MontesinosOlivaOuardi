@@ -7,7 +7,7 @@ import numpy as np
 def fix_seed(seed=100):
     # Configuración del dispositivo (CPU o GPU)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"Usando dispositivo: {device}")
+    # print(f"Usando dispositivo: {device}")
 
     # Liberación de memoria para evitar problemas de consumo en GPU
     gc.collect() # Ejecuta el recolector de basura de Python
