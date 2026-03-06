@@ -6,7 +6,7 @@ from policies.epsilon_greedy import epsilon_soft_distribution
 
 class MCOffPolicy(BaseAlgorithm):
     """
-    Monte Carlo Off-Policy Control (Importance Sampling, all-visit).
+    Monte Carlo Off-Policy Control (Weighted Importance Sampling, all-visit).
     Target policy: greedy
     Behavior policy: epsilon-soft
     """
