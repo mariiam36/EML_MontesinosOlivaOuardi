@@ -32,7 +32,7 @@ El objetivo principal es analizar, implementar y comparar distintos algoritmos d
 
 - `k_brazos/`: directorio correspondiente a la parte 1 de la práctica (problema del bandido de k-brazos).
 - `Entornos_Complejos/`: directorio correspondiente a la parte 2 de la práctica (métodos tabulares y control con aproximaciones).
-- `docs/` : documentación de la práctica en formato PDF y archivos `.tex`.
+- `docs/` : documentación de la práctica en formato PDF (`informe.pdf`) y archivos `.tex` comprimidos en un zip (`EML_Informe.zip`).
 - `requirements.txt`: lista de dependencias necesarias para ejecutar el trabajo (en local).
 - `README.md`: este fichero.
 
